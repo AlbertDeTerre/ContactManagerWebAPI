@@ -2,6 +2,7 @@ package com.albertvtr.contactwebapi.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +19,9 @@ public class Contact {
 
     @Enumerated(EnumType.STRING)
     private ContactType contactType;
+
+    @ManyToMany(mappedBy = "contacts", fetch = FetchType.LAZY)
+    private List<Company> companies;
 
     public Contact() {}
 
