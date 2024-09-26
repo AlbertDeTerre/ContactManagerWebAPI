@@ -1,4 +1,4 @@
-package com.albertvtr.contactwebapi.model;
+package com.albertvtr.contactwebapi.model.entities;
 
 public class Employee extends Contact{
 
