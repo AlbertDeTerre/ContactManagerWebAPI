@@ -17,6 +17,7 @@ public class Contact {
     private String lastName;
     private Address address;
 
+    @Column(name = "contact_type", insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     private ContactType contactType;
 
