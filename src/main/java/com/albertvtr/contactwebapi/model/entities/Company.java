@@ -39,4 +39,20 @@ public class Company {
     public Long getId() {
         return id;
     }
+
+    public String getNumVAT() {
+        return numVAT;
+    }
+
+    public void setNumVAT(String numVAT) {
+        this.numVAT = numVAT;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
