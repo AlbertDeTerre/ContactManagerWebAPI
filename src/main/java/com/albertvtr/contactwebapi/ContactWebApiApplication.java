@@ -1,14 +1,11 @@
 package com.albertvtr.contactwebapi;
 
-import com.albertvtr.contactwebapi.model.entities.Address;
 import com.albertvtr.contactwebapi.model.entities.Contact;
 import com.albertvtr.contactwebapi.model.entities.Employee;
 import com.albertvtr.contactwebapi.model.entities.Freelance;
-import com.albertvtr.contactwebapi.service.address.dtos.AddressDTO;
 import com.albertvtr.contactwebapi.service.contact.dtos.ContactDTO;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
