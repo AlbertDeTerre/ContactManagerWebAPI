@@ -73,6 +73,10 @@ public class Contact {
         this.contactType = contactType;
     }
 
+    public List<Company> getCompanies() {
+        return companies;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

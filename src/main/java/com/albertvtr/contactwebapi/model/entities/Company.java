@@ -17,8 +17,8 @@ public class Company {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "company_contact",
-            joinColumns = @JoinColumn(name = "company_id"),
-            inverseJoinColumns = @JoinColumn(name = "contact_id")
+            joinColumns = @JoinColumn(name = "company_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "contact_id", referencedColumnName = "id")
     )
     private List<Contact> contacts;
 
@@ -30,6 +30,12 @@ public class Company {
 
     public List<Contact> getContacts() {
         return contacts;
+    }
+
+    public void addContact(Contact contact) {
+        if (!contacts.contains(contact)) {
+            contacts.add(contact);
+        }
     }
 
     public void setId(Long id) {
