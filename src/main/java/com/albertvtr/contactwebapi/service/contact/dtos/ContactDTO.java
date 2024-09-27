@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class ContactDTO {
 
+    private Long id;
     @NotBlank(message = "You must provide a firstName")
     private String firstName;
     @NotBlank(message = "You must provide a lastName")
@@ -22,7 +23,8 @@ public class ContactDTO {
 
     public ContactDTO() {}
 
-    public ContactDTO(String firstName, String lastName, AddressDTO address, ContactType contactType, String numVAT) {
+    public ContactDTO(Long id, String firstName, String lastName, AddressDTO address, ContactType contactType, String numVAT) {
+        setId(id);
         setFirstName(firstName);
         setLastName(lastName);
         setAddress(address);
@@ -68,6 +70,14 @@ public class ContactDTO {
 
     public void setNumVAT(String numVAT) {
         this.numVAT = numVAT;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @JsonIgnore
