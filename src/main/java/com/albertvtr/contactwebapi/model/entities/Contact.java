@@ -17,19 +17,15 @@ public class Contact {
     private Address address;
     private String numVAT;
 
-    /*@Transient
-    private ContactType contactType;*/
-
     @ManyToMany(mappedBy = "contacts", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Company> companies;
 
     public Contact() {}
 
-    public Contact(String firstName, String lastName, Address address/*, ContactType contactType*/, String numVAT) {
+    public Contact(String firstName, String lastName, Address address, String numVAT) {
         setFirstName(firstName);
         setLastName(lastName);
         setAddress(address);
-        //setContactType(contactType);
         setNumVAT(numVAT);
     }
 
@@ -65,14 +61,6 @@ public class Contact {
         this.address = address;
     }
 
-    /*public ContactType getContactType() {
-        return contactType;
-    }
-
-    public void setContactType(ContactType contactType) {
-        this.contactType = contactType;
-    }*/
-
     public List<Company> getCompanies() {
         return companies;
     }
@@ -83,11 +71,6 @@ public class Contact {
 
     public void setNumVAT(String numVAT) {
         this.numVAT = numVAT;
-        /*if (this.numVAT.isBlank()){
-            setContactType(ContactType.FREELANCE);
-        }else{
-            setContactType(ContactType.EMPLOYEE);
-        }*/
     }
 
     @Override
