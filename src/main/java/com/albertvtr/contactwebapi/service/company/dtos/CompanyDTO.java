@@ -16,4 +16,33 @@ public class CompanyDTO {
 
     public CompanyDTO() {}
 
+    public CompanyDTO(Long id, String numVAT, AddressDTO address) {
+        setId(id);
+        setNumVAT(numVAT);
+        setAddress(address);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNumVAT() {
+        return numVAT;
+    }
+
+    public void setNumVAT(String numVAT) {
+        this.numVAT = numVAT;
+    }
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
 }
