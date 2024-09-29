@@ -46,7 +46,7 @@ This project is a Web API for managing contacts within a company. It is built us
 
 4. Navigate to the project repository:
 ```bash
-   cd location/of/folder/ContactWebApi
+   cd folder/of/cloned/project/ContactManagerWebAPI
 ```
 
 3. Run the app:
