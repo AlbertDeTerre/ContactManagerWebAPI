@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "contact_type", discriminatorType = DiscriminatorType.STRING)
 public class Contact {
 
     @Id
@@ -16,21 +15,22 @@ public class Contact {
     private String firstName;
     private String lastName;
     private Address address;
+    private String numVAT;
 
-    @Column(name = "contact_type", insertable = false, updatable = false)
-    @Enumerated(EnumType.STRING)
-    private ContactType contactType;
+    /*@Transient
+    private ContactType contactType;*/
 
-    @ManyToMany(mappedBy = "contacts", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "contacts", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Company> companies;
 
     public Contact() {}
 
-    public Contact(String firstName, String lastName, Address address, ContactType contactType) {
+    public Contact(String firstName, String lastName, Address address/*, ContactType contactType*/, String numVAT) {
         setFirstName(firstName);
         setLastName(lastName);
         setAddress(address);
-        setContactType(contactType);
+        //setContactType(contactType);
+        setNumVAT(numVAT);
     }
 
     public void setId(Long id) {
@@ -65,16 +65,29 @@ public class Contact {
         this.address = address;
     }
 
-    public ContactType getContactType() {
+    /*public ContactType getContactType() {
         return contactType;
     }
 
     public void setContactType(ContactType contactType) {
         this.contactType = contactType;
-    }
+    }*/
 
     public List<Company> getCompanies() {
         return companies;
+    }
+
+    public String getNumVAT() {
+        return numVAT;
+    }
+
+    public void setNumVAT(String numVAT) {
+        this.numVAT = numVAT;
+        /*if (this.numVAT.isBlank()){
+            setContactType(ContactType.FREELANCE);
+        }else{
+            setContactType(ContactType.EMPLOYEE);
+        }*/
     }
 
     @Override

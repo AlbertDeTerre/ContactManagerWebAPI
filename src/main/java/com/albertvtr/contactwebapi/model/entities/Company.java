@@ -38,6 +38,10 @@ public class Company {
         }
     }
 
+    public void removeContact(Contact contact) {
+        contacts.remove(contact);
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
