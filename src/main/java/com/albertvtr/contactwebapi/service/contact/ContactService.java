@@ -1,13 +1,14 @@
 package com.albertvtr.contactwebapi.service.contact;
 
-import com.albertvtr.contactwebapi.service.contact.dtos.ContactDTO;
+import com.albertvtr.contactwebapi.service.contact.dtos.ContactDTOInput;
+import com.albertvtr.contactwebapi.service.contact.dtos.ContactDTOOutput;
 
 import java.util.List;
 
 public interface ContactService {
 
-    ContactDTO createContact(ContactDTO contact);
-    ContactDTO updateContact(ContactDTO contact, Long id);
+    ContactDTOOutput createContact(ContactDTOInput contact);
+    ContactDTOOutput updateContact(ContactDTOInput contact, Long id);
     void deleteContact(Long id);
-    List<ContactDTO> fetchAllContacts();
+    List<ContactDTOOutput> fetchAllContacts();
 }
