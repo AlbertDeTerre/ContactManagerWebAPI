@@ -1,7 +1,11 @@
 package com.albertvtr.contactwebapi.service.contact.dtos;
 
+import com.albertvtr.contactwebapi.model.entities.Company;
 import com.albertvtr.contactwebapi.model.entities.ContactType;
 import com.albertvtr.contactwebapi.service.address.dtos.AddressDTO;
+import com.albertvtr.contactwebapi.service.company.dtos.CompanyDTO;
+
+import java.util.List;
 
 public class ContactDTOOutput {
 
@@ -10,18 +14,19 @@ public class ContactDTOOutput {
     private String lastName;
     private AddressDTO address;
     private ContactType contactType;
-
     private String numVAT;
+    private List<CompanyDTO> companies;
 
     public ContactDTOOutput() {}
 
-    public ContactDTOOutput(Long id, String firstName, String lastName, AddressDTO address, ContactType contactType, String numVAT) {
+    public ContactDTOOutput(Long id, String firstName, String lastName, AddressDTO address, ContactType contactType, String numVAT, List<CompanyDTO> companies) {
         setId(id);
         setFirstName(firstName);
         setLastName(lastName);
         setAddress(address);
         setContactType(contactType);
         setNumVAT(numVAT);
+        setCompanies(companies);
     }
 
     public String getFirstName() {
@@ -67,6 +72,14 @@ public class ContactDTOOutput {
         }else{
             setContactType(ContactType.EMPLOYEE);
         }
+    }
+
+    public List<CompanyDTO> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(List<CompanyDTO> companies) {
+        this.companies = companies;
     }
 
     public Long getId() {
