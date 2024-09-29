@@ -2,28 +2,20 @@ package com.albertvtr.contactwebapi.service.contact.dtos;
 
 import com.albertvtr.contactwebapi.model.entities.ContactType;
 import com.albertvtr.contactwebapi.service.address.dtos.AddressDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
-public class ContactDTO {
+public class ContactDTOOutput {
 
     private Long id;
-    @NotBlank(message = "You must provide a firstName")
     private String firstName;
-    @NotBlank(message = "You must provide a lastName")
     private String lastName;
-    @NotNull(message = "You must provide an address")
     private AddressDTO address;
-    @NotNull(message = "You must provide a contactType")
     private ContactType contactType;
 
     private String numVAT;
 
-    public ContactDTO() {}
+    public ContactDTOOutput() {}
 
-    public ContactDTO(Long id, String firstName, String lastName, AddressDTO address, ContactType contactType, String numVAT) {
+    public ContactDTOOutput(Long id, String firstName, String lastName, AddressDTO address, ContactType contactType, String numVAT) {
         setId(id);
         setFirstName(firstName);
         setLastName(lastName);
@@ -70,6 +62,11 @@ public class ContactDTO {
 
     public void setNumVAT(String numVAT) {
         this.numVAT = numVAT;
+        if (!getNumVAT().isBlank()) {
+            setContactType(ContactType.FREELANCE);
+        }else{
+            setContactType(ContactType.EMPLOYEE);
+        }
     }
 
     public Long getId() {
@@ -78,14 +75,5 @@ public class ContactDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @JsonIgnore
-    @AssertTrue(message = "numVAT is required for Freelance contacts")
-    public boolean isNumVATValid() {
-        if (this.contactType == ContactType.FREELANCE) {
-            return this.numVAT != null && !this.numVAT.isEmpty();
-        }
-        return true;
     }
 }
