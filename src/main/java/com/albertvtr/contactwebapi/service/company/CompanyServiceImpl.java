@@ -1,5 +1,6 @@
 package com.albertvtr.contactwebapi.service.company;
 
+import com.albertvtr.contactwebapi.model.entities.Address;
 import com.albertvtr.contactwebapi.model.entities.Company;
 import com.albertvtr.contactwebapi.model.entities.Contact;
 import com.albertvtr.contactwebapi.model.repos.CompanyRepository;
@@ -40,11 +41,11 @@ public class CompanyServiceImpl implements CompanyService {
     public CompanyDTO UpdateCompany(CompanyDTO companyDTO, Long id) {
 
         // Check if company exists
-        companyRepository.findById(id).orElseThrow(() -> new RuntimeException("Company not found"));
+        Company companyDB = companyRepository.findById(id).orElseThrow(() -> new RuntimeException("Company not found"));
 
         // Update fields by mapping dto to a company entity
-        Company companyDB = modelMapper.map(companyDTO, Company.class);
-
+        companyDB.setAddress(modelMapper.map(companyDTO.getAddress(), Address.class));
+        companyDB.setNumVAT(companyDTO.getNumVAT());
         // Change id to match the company to update
         companyDB.setId(id);
 
@@ -59,12 +60,6 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<CompanyDTO> fetchAllCompanies() {
-        for (Company company : companyRepository.findAll()) {
-            System.out.println("Company: "+company.getId());
-            for (Contact contact : company.getContacts()) {
-                System.out.println("    Contact: "+contact.getId());
-            }
-        }
         return modelMapper.map(companyRepository.findAll(), new TypeToken<List<CompanyDTO>>() {}.getType());
     }
 
